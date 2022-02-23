@@ -66,9 +66,50 @@ public class Nodo {
 		return this.pai == null ? true:false;
 	}
 	
+	/**
+	 * Informa se este Nodo n é filho esquerdo numa árvore.
+	 * @param n @Nodo
+	 * @return boolean Devolve true, se n for filho esquerdo. false, caso contrário.
+	 */
+	public boolean isNodoEsq() {
+		Nodo q = this.pai;
+		if (q == null)  // O nodo n aponta p/ raiz.
+			return false; 
+		if (q.getNodoEsq().equals(this)) 
+			return true;
+		return false;	
+	}
 	
+	/**
+	 * Informa se este Nodo n é filho direito numa árvore.
+	 * @param n @Nodo
+	 * @return boolean Devolve true, se n for filho esquerdo. false, caso contrário.
+	 */
+	public boolean isNodoDir() {
+		Nodo q = this.pai;
+		if (q == null) 
+			return false;
+		if (q.getNodoDir().equals(this))
+			return true;
+		return false;
+	}
 	
+	/**
+	 * Verifica se nodo possui irmão.
+	 * @param n
+	 * @return boolean Devolve true, se n possui irmao. false, caso contrário.
+	 */
+	public boolean temIrmao() {
+		if (this.pai == null) 
+			return false;
+		if (this.isNodoEsq())
+			return this.pai.getNodoDir() != null ? true : false;
+		return this.pai.getNodoEsq() != null ? true : false;
+	}
 	
+	//----------------------------------------------------------------------------------//
+	// --------------------------- Métodos estáticos a partir daqui ------------------- //
+	//----------------------------------------------------------------------------------//
 	
 	/**
 	 * Informa se um Nodo n é filho esquerdo numa árvore.
