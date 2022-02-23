@@ -65,5 +65,50 @@ public class Nodo {
 	public boolean isRaiz() {
 		return this.pai == null ? true:false;
 	}
-
+	
+	
+	
+	
+	
+	/**
+	 * Informa se um Nodo n é filho esquerdo numa árvore.
+	 * @param n @Nodo
+	 * @return boolean Devolve true, se n for filho esquerdo. false, caso contrário.
+	 */
+	public static boolean isNodoEsq(Nodo n) {
+		Nodo q = n.getPai();
+		if (q == null)  // O nodo n aponta p/ raiz.
+			return false; 
+		if (q.getNodoEsq() == n) 
+			return true;
+		return false;	
+	}
+	
+	/**
+	 * Informa se um Nodo n é filho direito numa árvore.
+	 * @param n @Nodo
+	 * @return boolean Devolve true, se n for filho esquerdo. false, caso contrário.
+	 */
+	public static boolean isNodoDir(Nodo n) {
+		Nodo q = n.getPai();
+		if (q == null) 
+			return false;
+		if (q.getNodoDir() == n)
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Verifica se o nodo n possui irmão.
+	 * @param n
+	 * @return boolean Devolve true, se n possui irmao. false, caso contrário.
+	 */
+	public static boolean temIrmao(Nodo n) {
+		if (n.getPai() == null) 
+			return false;
+		if (isNodoEsq(n))
+			return n.getPai().getNodoDir() != null ? true : false;
+		return n.getPai().getNodoEsq() != null ? true : false;
+	}
+	
 }
