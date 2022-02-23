@@ -62,6 +62,8 @@ public class Nodo {
 		this.nodoDir = nodoDir;
 	}
 	
-	
+	public boolean isRaiz() {
+		return this.pai == null ? true:false;
+	}
 
 }
