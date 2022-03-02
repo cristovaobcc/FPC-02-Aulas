@@ -22,20 +22,24 @@ public class Nodo {
 	 * @param nodoEsq @Nodo
 	 * @param nodoDir @Nodo
 	 */
-	public Nodo(Dado dados, Nodo pai, Nodo nodoEsq, Nodo nodoDir) {
+	public Nodo(Object dados, Nodo pai, Nodo nodoEsq, Nodo nodoDir) {
 		super();
-		this.dados = dados;
+		this.dados = new Dado(dados);
 		this.pai = pai;
 		this.nodoEsq = nodoEsq;
 		this.nodoDir = nodoDir;
 	}
-
-	public Dado getDados() {
-		return dados;
+	
+	/**
+	 * Devolve o contéudo(dados) do Nodo.
+	 * @return Object Conteúdo armazenado no nodo.
+	 */
+	public Object getDados() {
+		return dados.getDado();
 	}
 
-	public void setDados(Dado dados) {
-		this.dados = dados;
+	public void setDados(Object dado) {
+		this.dados.setDado(dado);
 	}
 
 	public Nodo getPai() {
