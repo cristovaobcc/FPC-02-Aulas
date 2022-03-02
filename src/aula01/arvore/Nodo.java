@@ -107,6 +107,24 @@ public class Nodo {
 		return this.pai.getNodoEsq() != null ? true : false;
 	}
 	
+	/**
+	 * Devolve o irmão do nodo atual, se ele existir.
+	 * Caso este nodo seja um nó direito, devolve o irmão esquerdo. E vice-versa.
+	 * Caso não haja irmao, devolve null.
+	 * @return Nodo O nodo irmão, se existir. null, caso não exista.
+	 */
+	public Nodo irmao() {
+		if (this.temIrmao()) {
+
+			if (this.isNodoDir()) {
+				return this.pai.getNodoEsq();
+			} else {
+				return this.pai.getNodoDir();
+			}
+		}
+		return null;
+	}
+	
 	//----------------------------------------------------------------------------------//
 	// --------------------------- Métodos estáticos a partir daqui ------------------- //
 	//----------------------------------------------------------------------------------//
