@@ -113,7 +113,7 @@ public class Nodo {
 	 * Caso não haja irmao, devolve null.
 	 * @return Nodo O nodo irmão, se existir. null, caso não exista.
 	 */
-	public Nodo irmao() {
+	public Nodo getIrmao() {
 		if (this.temIrmao()) {
 
 			if (this.isNodoDir()) {
