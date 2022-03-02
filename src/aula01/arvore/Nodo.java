@@ -14,18 +14,44 @@ public class Nodo {
 	private Nodo nodoDir;
 	
 	/**
-	 * Ao instanciar um nodo deve-se passar um conteúdo que seja do tipo Dado.
-	 * Caso nodo raiz seja null, o nó
+	 * Cria um Nodo, caso o nodo pai seja null, o nó será raiz.
+	 * Os nodos esquerdo e direito são null.
 	 * 
-	 * @param dados @Dado
+	 * @param dados Object contéudo de dados a ser armazenado no nodo
+	 * @param pai Nodo
+	 */
+	public Nodo(Object dados, Nodo pai) {
+		super();
+		this.dados = new Dado(dados);
+		this.pai = pai;
+	}
+	
+	/**
+	 * Cria um Nodo, caso o nodo pai seja null, o nó será raiz.
+	 * @param dados Object
+	 * @param pai Nodo
+	 * @param filho Nodo
+	 * @param isEsquerdo boolean
+	 */
+	public Nodo(Object dados, Nodo pai, Nodo filho, boolean isEsquerdo ) {
+		this(dados, pai);
+		if (isEsquerdo) {
+			this.setNodoEsq(filho);
+		} else 
+			this.setNodoDir(filho);
+	}
+	
+	/**
+	 * Ao instanciar um nodo deve-se passar um conteúdo que seja do tipo Dado.
+	 * Caso nodo pai seja null, o nó será raiz.
+	 * 
+	 * @param dados Object contéudo de dados a ser armazenado no nodo
 	 * @param pai @Nodo
 	 * @param nodoEsq @Nodo
 	 * @param nodoDir @Nodo
 	 */
 	public Nodo(Object dados, Nodo pai, Nodo nodoEsq, Nodo nodoDir) {
-		super();
-		this.dados = new Dado(dados);
-		this.pai = pai;
+		this(dados, pai);
 		this.nodoEsq = nodoEsq;
 		this.nodoDir = nodoDir;
 	}
