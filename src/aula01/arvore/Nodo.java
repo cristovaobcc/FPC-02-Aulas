@@ -33,8 +33,14 @@ public class Nodo {
 	 * @param filho Nodo
 	 * @param isEsquerdo boolean
 	 */
-	public Nodo(Object dados, Nodo pai, Nodo filho, boolean isEsquerdo ) {
+	public Nodo(Object dados, Nodo pai, Nodo filho, boolean isEsquerdo ) throws 
+		NodoException{
 		this(dados, pai);
+		
+		if (filho == null) {
+			throw new NodoException("O filho Nodo é null. Use o construtor Nodo(Object dados, Nodo pai).");
+		}
+
 		if (isEsquerdo) {
 			this.setNodoEsq(filho);
 		} else 
@@ -50,8 +56,12 @@ public class Nodo {
 	 * @param nodoEsq @Nodo
 	 * @param nodoDir @Nodo
 	 */
-	public Nodo(Object dados, Nodo pai, Nodo nodoEsq, Nodo nodoDir) {
+	public Nodo(Object dados, Nodo pai, Nodo nodoEsq, Nodo nodoDir) throws NodoException{
 		this(dados, pai);
+		
+		if (nodoEsq == null || nodoDir == null) {
+			throw new NodoException("nodoEsq ou nodoDir é null. Nodo(Object dados, Nodo pai, Nodo filho, boolean isEsquerdo ). ");
+		}
 		this.nodoEsq = nodoEsq;
 		this.nodoDir = nodoDir;
 	}
@@ -72,15 +82,21 @@ public class Nodo {
 		return pai;
 	}
 
-	public void setPai(Nodo raiz) {
-		this.pai = raiz;
+	public void setPai(Nodo n) throws NodoException {
+		if (n == this) {
+			throw new NodoException("Não é permitido configurar o próprio nodo como nodo pai.");
+		}
+		this.pai = n;
 	}
 
 	public Nodo getNodoEsq() {
 		return nodoEsq;
 	}
 
-	public void setNodoEsq(Nodo nodoEsq) {
+	public void setNodoEsq(Nodo nodoEsq) throws NodoException {
+		if (nodoEsq == this) {
+			throw new NodoException("Não é permitido configurar o próprio nodo como nodo esquerdo.");
+		}
 		this.nodoEsq = nodoEsq;
 	}
 
@@ -88,7 +104,10 @@ public class Nodo {
 		return nodoDir;
 	}
 
-	public void setNodoDir(Nodo nodoDir) {
+	public void setNodoDir(Nodo nodoDir) throws NodoException {
+		if (nodoDir == this) {
+			throw new NodoException("Não é permitido configurar o próprio nodo como nodo direito.");
+		}
 		this.nodoDir = nodoDir;
 	}
 	
