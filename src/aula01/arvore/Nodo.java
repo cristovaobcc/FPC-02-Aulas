@@ -124,7 +124,7 @@ public class Nodo {
 		Nodo q = this.pai;
 		if (q == null)  // O nodo n aponta p/ raiz.
 			return false; 
-		if (q.getNodoEsq().equals(this)) 
+		if (q.getNodoEsq().equals(this)) // verifica pela referência de memória
 			return true;
 		return false;	
 	}
@@ -138,7 +138,7 @@ public class Nodo {
 		Nodo q = this.pai;
 		if (q == null) 
 			return false;
-		if (q.getNodoDir().equals(this))
+		if (q.getNodoDir().equals(this)) // verifica pela referência de memória
 			return true;
 		return false;
 	}
