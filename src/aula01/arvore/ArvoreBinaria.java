@@ -72,18 +72,6 @@ public class ArvoreBinaria {
 		}		
 	}
 	
-	/**
-	 * 
-	 * @param nodo
-	 * @return
-	 */
-	private Nodo visitaSubArvore(Nodo nodo) {
-		if (nodo.getNodoEsq() == null) {
-			return nodo;
-		} else {
-			return this.visitaSubArvore(nodo.getNodoDir());
-		}
-		
-	}
+	
 	
 }
