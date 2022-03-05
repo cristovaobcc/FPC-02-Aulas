@@ -120,6 +120,13 @@ public class ArvoreBinaria {
 		}		
 	}
 
+	@Override
+	public String toString() {
+		return "ArvoreBinaria [raiz=" + raiz + "]";
+	}
+
+	
+	
 
 
 }

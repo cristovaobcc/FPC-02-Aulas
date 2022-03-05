@@ -173,5 +173,18 @@ public class Nodo {
 		}
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return "Nodo [dados=" + dados + ", pai=" + (pai == null ? "null" : pai.getDados()) + 
+				", nodoEsq=" + (nodoEsq == null ? "null" : nodoEsq.getDados()) + 
+				", nodoDir=" + (nodoDir == null ? "null" : nodoDir.getDados()) + "]";
+	}
+
+	
+
+	
+	
+	
 	
 }

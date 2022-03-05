@@ -4,7 +4,9 @@
 package aula01.arvore;
 
 /**
- * Classe que representa os dados de um nodo de árvore binária
+ * Classe que representa os dados de um nodo de árvore binária.
+ * O objeto inserido nessa classe deve implementar os métodos equals, hashCode
+ * e a interface Comparable.
  * @author cristovao
  *
  */
