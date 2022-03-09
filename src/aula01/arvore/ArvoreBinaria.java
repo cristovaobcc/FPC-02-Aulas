@@ -94,7 +94,6 @@ public class ArvoreBinaria {
 		if (this.raiz.getNodoEsq() != null ) {
 			this.percorreEmOrdem(this.raiz.getNodoEsq(), arrayList);
 		} 
-
 		if (this.raiz.getNodoDir() != null) {
 			this.percorreEmOrdem(this.raiz.getNodoDir(), arrayList);
 		}
@@ -109,11 +108,12 @@ public class ArvoreBinaria {
 	 * @param lista {@link ArrayList}
 	 */
 	private void percorreEmOrdem(Nodo n, ArrayList<Object> lista) {
+		// Visita a raiz da subárvore que tem raiz no nodo n.
+		lista.add(n);
 		// Verifica se o nó atual tem filho esquerdo.
 		if (n.getNodoEsq() != null) {
 			this.percorreEmOrdem(n.getNodoEsq(), lista);
-		} 
-		lista.add(n);	
+		} 		
 		// Verifica se o nó atual não tem filho direito.
 		if (n.getNodoDir() != null) {
 			this.percorreEmOrdem(n.getNodoDir(), lista);
