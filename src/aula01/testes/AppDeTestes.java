@@ -28,11 +28,8 @@ public class AppDeTestes {
 		// Random random = new Random();	
 		// elementosParaArvore = insereInteirosAleatorios(elementosParaArvore);
 		
-		Integer[] numeros = {21, 30, 31, 25, 27, 22, 8, 6, 7};
-		
-		elementosParaArvore = insereNumerosDeArray(numeros, elementosParaArvore);
-		
-		
+		Integer[] numeros = {21, 30, 31, 25, 27, 22, 8, 6, 7};	
+		elementosParaArvore = insereNumerosDeArray(numeros, elementosParaArvore);	
 		System.out.println(elementosParaArvore);
 
 		ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
@@ -46,26 +43,67 @@ public class AppDeTestes {
 		imprimeLinha("Valor inicial de árvore binária");
 		System.out.println(arvoreBinaria);
 
-		for (Integer integer : elementosParaArvore) {
-			arvoreBinaria.insereNodo(integer);
-		}
-
+		insereElementosEmArvore(elementosParaArvore, arvoreBinaria);
+		System.out.println(arvoreBinaria);
+		
+		testaPercusoEmPreOrdem(arvoreBinaria);
+		
+		testaPercusoEmOrdem(arvoreBinaria);
+		
+	}
+	
+	
+	private static void testaPercusoEmOrdem(ArvoreBinaria arvoreBinaria) {
 		List<Object> elementosPercorridosEmOrdem = arvoreBinaria.listarEmOrdemRecursivo();
 
-		imprimeLinha("Árvore percorrida em ordem");
-		int tamanho = elementosPercorridosEmOrdem.size();
+		imprimeListDeNodos(elementosPercorridosEmOrdem);	
+	}
+
+	/**
+	 * Percorre a arvoreBinaria em pré-ordem (percurso em profudidade).
+	 * @param arvoreBinaria
+	 */
+	private static void testaPercusoEmPreOrdem(ArvoreBinaria arvoreBinaria) {
+		List<Object> elementosPercorridosEmPreOrdem = arvoreBinaria.listarEmPreOrdemRecursivo();
+		
+		imprimeListDeNodos(elementosPercorridosEmPreOrdem);
+		
+	}
+	
+	private static void imprimeListDeNodos(List<Object> nodos) {
+		
+		imprimeLinha("Árvore percorrida em pré-ordem");
+		int tamanho = nodos.size();
 		Nodo nodoLido = null;
 		for(int i = 0; i < tamanho ; i++) {
-			nodoLido = (Nodo)elementosPercorridosEmOrdem.get(i);
+			nodoLido = (Nodo)nodos.get(i);
 			if (i + 1 == tamanho) {
 				System.out.println(nodoLido.getDados().toString() + ".");
 			} else {
 				System.out.printf(nodoLido.getDados().toString() + ", ");
 			}
 		}
-
 	}
-
+	
+	
+	/**
+	 * Insere itens de elementosParaArvores em arvoreBinaria.
+	 * @param elementosParaArvore
+	 * @param arvoreBinaria
+	 */
+	private static void insereElementosEmArvore(List<Integer> elementosParaArvore, ArvoreBinaria arvoreBinaria) {
+		for (Integer integer : elementosParaArvore) {
+			arvoreBinaria.insereNodo(integer);
+		}
+	}
+	
+	/**
+	 * Insere numeros em elementosParaArvore.
+	 * 
+	 * @param numeros
+	 * @param elementosParaArvore
+	 * @return
+	 */
 	private static List<Integer> insereNumerosDeArray(Integer[] numeros, List<Integer> elementosParaArvore) {
 		for (int i = 0; i < numeros.length; i++) {
 			Integer integer = numeros[i];
