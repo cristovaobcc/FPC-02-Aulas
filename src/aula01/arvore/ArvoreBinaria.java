@@ -120,10 +120,10 @@ public class ArvoreBinaria {
 		}		
 	}
 
-	
+
 	public ArrayList<Object> listarEmOrdemRecursivo(){
 		ArrayList<Object> arrayList = new ArrayList<Object>();
-		
+
 		if (this.raiz.getNodoEsq() != null ) {
 			this.percorreEmOrdem(this.raiz.getNodoEsq(), arrayList);
 		} 
@@ -133,7 +133,7 @@ public class ArvoreBinaria {
 		}
 		return arrayList;
 	}
-	
+
 	private void percorreEmOrdem(Nodo n, ArrayList<Object> lista) {
 		// Visita a subarvore da esquerda
 		if (n.getNodoEsq() != null) {
@@ -145,14 +145,41 @@ public class ArvoreBinaria {
 		if (n.getNodoDir() != null) {
 			this.percorreEmOrdem(n.getNodoDir(), lista);
 		}
-			
+
 	}
-	
-	
+
+	public ArrayList<Object> listarEmPosOrdemRecursivo(){
+		ArrayList<Object> arrayList = new ArrayList<Object>();
+
+		if (this.raiz.getNodoEsq() != null ) {
+			this.percorreEmPosOrdem(this.raiz.getNodoEsq(), arrayList);
+		} 
+		if (this.raiz.getNodoDir() != null) {
+			this.percorreEmPosOrdem(this.raiz.getNodoDir(), arrayList);
+		}
+		arrayList.add(this.raiz);
+		return arrayList;
+	}
+
+
+	private void percorreEmPosOrdem(Nodo n, ArrayList<Object> lista) {
+		// Visita a subarvore da esquerda
+		if (n.getNodoEsq() != null) {
+			this.percorreEmPosOrdem(n.getNodoEsq(), lista);
+		}
+		// Visita subarvore da direita
+		if (n.getNodoDir() != null) {
+			this.percorreEmPosOrdem(n.getNodoDir(), lista);
+		}
+		// Visita raiz
+		lista.add(n);
+
+	}
+
 	@Override
 	public String toString() {
 		return "ArvoreBinaria [raiz=" + raiz + "]";
 	}
 
-	
+
 }
