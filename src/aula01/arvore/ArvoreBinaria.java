@@ -86,16 +86,16 @@ public class ArvoreBinaria {
 	 * 
 	 * @return
 	 */
-	public ArrayList<Object> listarEmOrdemRecursivo(){
+	public ArrayList<Object> listarEmPreOrdemRecursivo(){
 
 		ArrayList<Object> arrayList = new ArrayList<Object>();
 		arrayList.add(this.raiz);
 
 		if (this.raiz.getNodoEsq() != null ) {
-			this.percorreEmOrdem(this.raiz.getNodoEsq(), arrayList);
+			this.percorreEmPreOrdem(this.raiz.getNodoEsq(), arrayList);
 		} 
 		if (this.raiz.getNodoDir() != null) {
-			this.percorreEmOrdem(this.raiz.getNodoDir(), arrayList);
+			this.percorreEmPreOrdem(this.raiz.getNodoDir(), arrayList);
 		}
 
 		return arrayList;
@@ -107,26 +107,52 @@ public class ArvoreBinaria {
 	 * @param n Nodo
 	 * @param lista {@link ArrayList}
 	 */
-	private void percorreEmOrdem(Nodo n, ArrayList<Object> lista) {
+	private void percorreEmPreOrdem(Nodo n, ArrayList<Object> lista) {
 		// Visita a raiz da subárvore que tem raiz no nodo n.
 		lista.add(n);
 		// Verifica se o nó atual tem filho esquerdo.
 		if (n.getNodoEsq() != null) {
-			this.percorreEmOrdem(n.getNodoEsq(), lista);
+			this.percorreEmPreOrdem(n.getNodoEsq(), lista);
 		} 		
 		// Verifica se o nó atual não tem filho direito.
 		if (n.getNodoDir() != null) {
-			this.percorreEmOrdem(n.getNodoDir(), lista);
+			this.percorreEmPreOrdem(n.getNodoDir(), lista);
 		}		
 	}
 
+	
+	public ArrayList<Object> listarEmOrdemRecursivo(){
+		ArrayList<Object> arrayList = new ArrayList<Object>();
+		
+		if (this.raiz.getNodoEsq() != null ) {
+			this.percorreEmOrdem(this.raiz.getNodoEsq(), arrayList);
+		} 
+		arrayList.add(this.raiz);
+		if (this.raiz.getNodoDir() != null) {
+			this.percorreEmOrdem(this.raiz.getNodoDir(), arrayList);
+		}
+		return arrayList;
+	}
+	
+	private void percorreEmOrdem(Nodo n, ArrayList<Object> lista) {
+		// Visita a subarvore da esquerda
+		if (n.getNodoEsq() != null) {
+			this.percorreEmOrdem(n.getNodoEsq(), lista);
+		}
+		// Visita raiz
+		lista.add(n);
+		// Visita subarvore da direita
+		if (n.getNodoDir() != null) {
+			this.percorreEmOrdem(n.getNodoDir(), lista);
+		}
+			
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "ArvoreBinaria [raiz=" + raiz + "]";
 	}
 
 	
-	
-
-
 }
