@@ -50,12 +50,21 @@ public class AppDeTestes {
 		
 		testaPercusoEmOrdem(arvoreBinaria);
 		
+		testaPercusoEmPosOrdem(arvoreBinaria);
+		
 	}
 	
 	
+	private static void testaPercusoEmPosOrdem(ArvoreBinaria arvoreBinaria) {
+		List<Object> elementosPercorridosEmOrdem = arvoreBinaria.listarEmPosOrdemRecursivo();
+		imprimeLinha("Árvore percorrida em pós-ordem");
+		imprimeListDeNodos(elementosPercorridosEmOrdem);
+	}
+
+
 	private static void testaPercusoEmOrdem(ArvoreBinaria arvoreBinaria) {
 		List<Object> elementosPercorridosEmOrdem = arvoreBinaria.listarEmOrdemRecursivo();
-
+		imprimeLinha("Árvore percorrida em ordem");
 		imprimeListDeNodos(elementosPercorridosEmOrdem);	
 	}
 
@@ -65,14 +74,13 @@ public class AppDeTestes {
 	 */
 	private static void testaPercusoEmPreOrdem(ArvoreBinaria arvoreBinaria) {
 		List<Object> elementosPercorridosEmPreOrdem = arvoreBinaria.listarEmPreOrdemRecursivo();
-		
+		imprimeLinha("Árvore percorrida em pré-ordem");
 		imprimeListDeNodos(elementosPercorridosEmPreOrdem);
 		
 	}
 	
 	private static void imprimeListDeNodos(List<Object> nodos) {
-		
-		imprimeLinha("Árvore percorrida em pré-ordem");
+			
 		int tamanho = nodos.size();
 		Nodo nodoLido = null;
 		for(int i = 0; i < tamanho ; i++) {
