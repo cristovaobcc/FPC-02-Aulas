@@ -27,7 +27,8 @@ public class ArvoreBinaria {
 
 	/**
 	 * Insere o dado na árvore binária. O objeto inserido deve implementar 
-	 * a interface Comparable.
+	 * a interface Comparable, portanto a inserção obedece à ordem natural implementada
+	 * na classe de objeto dado passado no parâmetro.
 	 * 
 	 * @param dado Object
 	 */
@@ -176,10 +177,54 @@ public class ArvoreBinaria {
 
 	}
 
+	/**
+	 * Verifica se o objeto element passado no parâmetro, está contido na árvore.
+	 * Método equals(), hashCode() deve estar implementados p/ resultado correto.
+	 * O objeto element passado deve também implementar a interface {@link Comparable}.
+	 * 
+	 * @param element {@link Object}
+	 * @return true, caso objeto esteja já inserido na árvore. false, caso contrário.
+	 */
+	@SuppressWarnings("rawtypes")
+	public boolean hasNode(Comparable element) {
+		
+		return buscaEmPreOrdem(element) != null ? true : false;
+	}
+	
+	/**
+	 * Busca o elemento em pré-ordem de forma iterativa.
+	 * Caso exista devolve o conteúdo do nó que contém element.
+	 * Do contrário devolve null.
+	 * @param element {@link Comparable}
+	 * @return {@link Object}
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private Object buscaEmPreOrdem(Comparable element) {
+		Nodo nodoAtual = this.raiz;
+		Object o = null;
+		while(nodoAtual != null) {
+			if (nodoAtual.compareTo(element) == 0) {
+				o = nodoAtual.getDados();
+				return o;
+			} else {
+				// element vem depois de nodo
+				if(nodoAtual.compareTo(element) > 0) {
+					nodoAtual = nodoAtual.getNodoEsq();
+				} else {
+					nodoAtual = nodoAtual.getNodoDir();
+				}
+			}
+		}
+		return null;
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "ArvoreBinaria [raiz=" + raiz + "]";
 	}
+
+	
 
 
 }
