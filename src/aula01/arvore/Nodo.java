@@ -6,7 +6,7 @@ package aula01.arvore;
  * @author cristovao
  *
  */
-public class Nodo {
+public class Nodo implements Comparable{
 
 	private Dado dados;
 	private Nodo pai;
@@ -179,6 +179,11 @@ public class Nodo {
 		return "Nodo [dados=" + dados + ", pai=" + (pai == null ? "null" : pai.getDados()) + 
 				", nodoEsq=" + (nodoEsq == null ? "null" : nodoEsq.getDados()) + 
 				", nodoDir=" + (nodoDir == null ? "null" : nodoDir.getDados()) + "]";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.dados.compareTo(o);
 	}
 
 	
