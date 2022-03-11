@@ -3,7 +3,6 @@
  */
 package aula01.testes;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -27,7 +26,7 @@ public class AppDeTestes {
 
 		// Random random = new Random();	
 		// elementosParaArvore = insereInteirosAleatorios(elementosParaArvore);
-		
+
 		Integer[] numeros = {21, 30, 31, 25, 27, 22, 8, 6, 7};	
 		elementosParaArvore = insereNumerosDeArray(numeros, elementosParaArvore);	
 		System.out.println(elementosParaArvore);
@@ -45,16 +44,69 @@ public class AppDeTestes {
 
 		insereElementosEmArvore(elementosParaArvore, arvoreBinaria);
 		System.out.println(arvoreBinaria);
-		
+
 		testaPercusoEmPreOrdem(arvoreBinaria);
-		
+
 		testaPercusoEmOrdem(arvoreBinaria);
-		
+
 		testaPercusoEmPosOrdem(arvoreBinaria);
-		
+
+		testaBuscaNumerosRepetidos();
+
 	}
-	
-	
+
+
+	private static void testaBuscaNumerosRepetidos() {
+		
+		imprimeLinha("Busca por números repetidos");
+		Integer inteiros[] = {2, 5, 7, 5, 2, 1, 9, 10, 11, 13, 7}; 
+		
+		List<Integer> listaComRepetidosParaTeste = preencheComInteiros(inteiros);
+		System.out.println("Lista de teste -> "+ listaComRepetidosParaTeste);
+		List<Integer> listaDeRepetidos = buscaNumerosRepetidos(listaComRepetidosParaTeste);
+
+		// O resultado esperado é uma lista c/ {2, 5, 7}
+		System.out.println("Os números repetidos são: " + listaDeRepetidos);
+
+	}
+
+	private static LinkedList<Integer> preencheComInteiros(Integer[] inteiros){
+		LinkedList<Integer> inteirosLL = new LinkedList<Integer>();
+
+		for (int i = 0; i < inteiros.length; i++) {
+			Integer integer = inteiros[i];
+			inteirosLL.add(integer);
+		}
+
+		return inteirosLL;
+
+	}
+
+
+	private static LinkedList<Integer> buscaNumerosRepetidos(List<Integer> inteirosList){
+
+		Nodo raiz = new Nodo(inteirosList.get(0), null);
+		ArvoreBinaria arvoreDeInteiros = new ArvoreBinaria(raiz);
+		int t = inteirosList.size();
+		Integer inteiro = null;
+		LinkedList<Integer> inteirosRepetidos = new LinkedList<Integer>();
+		for (int i = 1; i < t; i++) {
+			inteiro = inteirosList.get(i);
+			if(arvoreDeInteiros.hasNode(inteiro)) {
+				inteirosRepetidos.add(inteiro);
+			} else {
+				arvoreDeInteiros.insereNodo(inteiro);
+			}
+		}
+
+		if (inteirosRepetidos.size() == 0) {
+			return null;
+		} else {
+			return inteirosRepetidos;
+		}
+	}
+
+
 	private static void testaPercusoEmPosOrdem(ArvoreBinaria arvoreBinaria) {
 		List<Object> elementosPercorridosEmOrdem = arvoreBinaria.listarEmPosOrdemRecursivo();
 		imprimeLinha("Árvore percorrida em pós-ordem");
@@ -76,11 +128,11 @@ public class AppDeTestes {
 		List<Object> elementosPercorridosEmPreOrdem = arvoreBinaria.listarEmPreOrdemRecursivo();
 		imprimeLinha("Árvore percorrida em pré-ordem");
 		imprimeListDeNodos(elementosPercorridosEmPreOrdem);
-		
+
 	}
-	
+
 	private static void imprimeListDeNodos(List<Object> nodos) {
-			
+
 		int tamanho = nodos.size();
 		Nodo nodoLido = null;
 		for(int i = 0; i < tamanho ; i++) {
@@ -92,8 +144,8 @@ public class AppDeTestes {
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Insere itens de elementosParaArvores em arvoreBinaria.
 	 * @param elementosParaArvore
@@ -104,7 +156,7 @@ public class AppDeTestes {
 			arvoreBinaria.insereNodo(integer);
 		}
 	}
-	
+
 	/**
 	 * Insere numeros em elementosParaArvore.
 	 * 
@@ -128,7 +180,7 @@ public class AppDeTestes {
 			j = random.nextInt(100);
 			list.add(j);
 		}
-		
+
 		return list;
 	}
 
