@@ -10,7 +10,7 @@ package aula01.arvore;
  * @author cristovao
  *
  */
-public class Dado {
+public class Dado implements Comparable{
 
 	private Object dado;
 
@@ -78,6 +78,11 @@ public class Dado {
 			System.out.println("Não é p/ entrar aqui");
 		}
 		System.out.println("Hello world.");
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public int compareTo(Object o) {
+		return ((Comparable) this.dado).compareTo(o);
 	}
 	
 }
