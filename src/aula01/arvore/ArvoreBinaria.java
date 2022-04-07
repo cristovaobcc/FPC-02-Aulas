@@ -243,7 +243,25 @@ public class ArvoreBinaria {
 	 */
 	public Object busca(Object dado) {
 		
-		return this.buscaRecursivaEmArvore(raiz, dado);
+		return this.buscaIterativaEmArvore(raiz, dado);
+	}
+	
+	
+	private Object buscaIterativaEmArvore(Nodo n, Object dado) {
+		Comparable<Object> comparable = n != null ? (Comparable<Object>) n.getDados() : null;
+		
+		while (n != null && !dado.equals(n.getDados())) {
+			comparable = (Comparable<Object>) n.getDados();
+			// Conteúdo do nó n vem depois de dado: busca-se à esquerda de n.
+			if (comparable.compareTo(dado) > 0 ) {
+				n = n.getNodoEsq();
+			} // Conteúdo do nó n vem antes de dado: busca-se à direita de n.
+			else {
+				n = n.getNodoDir();
+			} 
+		}
+		
+		return n != null ? n.getDados() : null;
 	}
 	
 	/**
