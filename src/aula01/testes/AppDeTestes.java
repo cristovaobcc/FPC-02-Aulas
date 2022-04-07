@@ -52,9 +52,32 @@ public class AppDeTestes {
 		testaPercusoEmPosOrdem(arvoreBinaria);
 
 		testaBuscaNumerosRepetidos();
+		
+		testaBuscarElementoNaArvore(arvoreBinaria);
 
 	}
-
+	
+	private static void testaBuscarElementoNaArvore(ArvoreBinaria arvore) {
+		imprimeLinha("Busca por elemento na árvore");
+		Integer numA = 27;
+		Integer numB = 6;
+		Integer numC = 32;
+		
+		verificaDadoIntegerEmArvore(numA, arvore);
+		verificaDadoIntegerEmArvore(numB, arvore);
+		verificaDadoIntegerEmArvore(numC, arvore);
+		
+	}
+	
+	private static void verificaDadoIntegerEmArvore(Integer n, ArvoreBinaria arvore) {
+		Integer encontrado = (Integer) arvore.busca(n);
+		if (encontrado != null) {
+			System.out.println(String.format("Foi encontrado o número %d", encontrado));
+		} else {
+			System.out.println(String.format("Não foi encontrado o número %d", n));
+		}
+		
+	}
 
 	private static void testaBuscaNumerosRepetidos() {
 		

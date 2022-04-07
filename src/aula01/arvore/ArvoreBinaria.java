@@ -2,6 +2,13 @@ package aula01.arvore;
 
 import java.util.ArrayList;
 
+/**
+ * Classe que representa uma estrutura de dados do tipo Árvore Binária.
+ * Os dados a serem armazenados pela árvore devem implementar a interface Comparable para que
+ * haja o adequado armazenado nessa estrutura.
+ * @author cristovao
+ *
+ */
 public class ArvoreBinaria {
 
 	private Nodo raiz;
@@ -64,7 +71,7 @@ public class ArvoreBinaria {
 					e.printStackTrace();
 				}
 			} else {
-				this.insereNodoRecursivo(n.getNodoDir(), dado);;
+				this.insereNodoRecursivo(n.getNodoDir(), dado);
 			}
 		} // Conteúdo do nó n vem depois de dado: inserção à esquerda de n.
 		else if (comparable.compareTo(dado) > 0) {
@@ -121,7 +128,11 @@ public class ArvoreBinaria {
 		}		
 	}
 
-
+	/**
+	 * Percorre a árvore em ordem e devolve um ArrayList ordenado conforme critério de
+	 * ordem natural do objeto armazenado na árvore.
+	 * @return {@link ArrayList}
+	 */
 	public ArrayList<Object> listarEmOrdemRecursivo(){
 		ArrayList<Object> arrayList = new ArrayList<Object>();
 
@@ -223,8 +234,39 @@ public class ArvoreBinaria {
 	public String toString() {
 		return "ArvoreBinaria [raiz=" + raiz + "]";
 	}
-
 	
+	/**
+	 * Verifica se o dado está contido na árvore.
+	 * Devolve o dado encontrado na árvore, caso ele exista; ou null, caso contrário.
+	 * @param dado Object
+	 * @return
+	 */
+	public Object busca(Object dado) {
+		
+		return this.buscaEmArvore(raiz, dado);
+	}
+	
+	/**
+	 * Função que realiza a busca de dado na árvore.
+	 * @param n
+	 * @param dado
+	 * @return
+	 */
+	private Object buscaEmArvore(Nodo n, Object dado) {
+		Comparable<Object> comparable = n != null ? (Comparable<Object>) n.getDados() : null;
+		
+		if (n == null || comparable.compareTo(dado) == 0) {
+			return n == null ? null : n.getDados();
+		}
+		
+		// Conteúdo do nó n vem depois de dado: busca-se à esquerda de n.
+		if (comparable.compareTo(dado) > 0 ) {
+			return this.buscaEmArvore(n.getNodoEsq(), dado);
+		} // Conteúdo do nó n vem antes de dado: busca-se à direita de n.
+		else {
+			return this.buscaEmArvore(n.getNodoDir(), dado);
+		}
+	}
 
 
 }
